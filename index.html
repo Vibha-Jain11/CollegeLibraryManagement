@@ -2,332 +2,388 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>College Library Management System</title>
-    <link rel="stylesheet" href="css/style.css">
-    <script src="js/app.js" defer></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#172d4d">
+<title>College Library Management System</title>
+<link rel="stylesheet" href="css/style.css">
+<script src="js/app.js" defer></script>
 </head>
 <body>
 
 <div class="app-layout">
 
-    <!-- SIDEBAR -->
-    <aside class="sidebar">
-        <div class="brand">
-            <span class="brand-icon">📚</span>
-            <div>
-                <h2>LibraryPro</h2>
-                <small>Management System</small>
-            </div>
+<!-- SIDEBAR -->
+<aside class="sidebar">
+    <div class="brand">
+        <span class="brand-icon">📚</span>
+        <div>
+            <h2>LibraryPro</h2>
+            <small>Management System</small>
         </div>
+    </div>
 
-        <div class="sidebar-label">MAIN MENU</div>
+    <div class="sidebar-label">MAIN MENU</div>
+    <nav class="navigation">
+        <button class="nav-link active" data-page="dashboard">🏠 Dashboard</button>
+        <button class="nav-link" data-page="books">📖 Book Management</button>
+        <button class="nav-link" data-page="members">👥 Members</button>
+        <button class="nav-link" data-page="issue">📤 Issue Books</button>
+        <button class="nav-link" data-page="returns">📥 Return Books</button>
+        <button class="nav-link" data-page="reservations">📌 Reservations</button>
+        <button class="nav-link" data-page="fines">💰 Fines</button>
+        <button class="nav-link" data-page="reports">📊 Reports</button>
+    </nav>
 
-        <nav class="navigation">
-            <button class="nav-link active" data-page="dashboard">
-                <span>🏠</span> Dashboard
-            </button>
-            <button class="nav-link" data-page="books">
-                <span>📖</span> Book Management
-            </button>
-            <button class="nav-link" data-page="members">
-                <span>👥</span> Members
-            </button>
-            <button class="nav-link" data-page="issue">
-                <span>📤</span> Issue Books
-            </button>
-            <button class="nav-link" data-page="returns">
-                <span>📥</span> Return Books
-            </button>
-            <button class="nav-link" data-page="reservations">
-                <span>📌</span> Reservations
-            </button>
-            <button class="nav-link" data-page="fines">
-                <span>💰</span> Fines
-            </button>
-            <button class="nav-link" data-page="reports">
-                <span>📊</span> Reports
-            </button>
-        </nav>
+    <div class="sidebar-label">PREFERENCES</div>
+    <nav class="navigation">
+        <button class="nav-link" data-page="settings">⚙️ Settings</button>
+    </nav>
 
-        <div class="sidebar-label">PREFERENCES</div>
-        <nav class="navigation">
-            <button class="nav-link" data-page="settings">
-                <span>⚙️</span> Settings
-            </button>
-        </nav>
-
-        <div class="sidebar-footer">
-            <div class="admin-avatar">A</div>
-            <div>
-                <strong>Administrator</strong>
-                <small>Library Admin</small>
-            </div>
+    <div class="sidebar-footer">
+        <div class="admin-avatar">A</div>
+        <div>
+            <strong>Administrator</strong>
+            <small>Library Admin</small>
         </div>
-    </aside>
+    </div>
+</aside>
 
-    <!-- MAIN CONTENT -->
-    <main class="main-content">
+<!-- MAIN AREA -->
+<main class="main-content">
 
-        <header class="topbar">
-            <div>
-                <h2 id="page-heading">Dashboard</h2>
-                <p>College Library Management System</p>
-            </div>
-            <div class="topbar-profile">
-                <span>🔔</span>
-                <span class="profile-circle">A</span>
-            </div>
-        </header>
+<header class="topbar">
+    <div>
+        <h2 id="page-heading">Dashboard</h2>
+        <p>College Library Management System</p>
+    </div>
+    <div class="topbar-profile">
+        <span>🔔</span>
+        <span class="profile-circle">A</span>
+    </div>
+</header>
 
-        <div class="page-container">
+<div class="page-container">
 
-            <!-- DASHBOARD -->
-            <section class="page-section active" id="dashboard">
-                <div class="welcome-section">
-                    <div>
-                        <h1>Welcome back, Administrator! 👋</h1>
-                        <p>Here's what's happening in your library today.</p>
-                    </div>
-                </div>
+<!-- DASHBOARD -->
+<section class="page-section active" id="dashboard">
+    <div class="welcome-section">
+        <h1>Welcome back, Administrator! 👋</h1>
+        <p>Here's what's happening in your library today.</p>
+    </div>
 
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <span class="stat-icon">📚</span>
-                        <p>Total Books</p>
-                        <h2 id="dash-total-books">0</h2>
-                    </div>
-                    <div class="stat-card">
-                        <span class="stat-icon">📖</span>
-                        <p>Available Copies</p>
-                        <h2 id="dash-available-books">0</h2>
-                    </div>
-                    <div class="stat-card">
-                        <span class="stat-icon">📤</span>
-                        <p>Books Issued</p>
-                        <h2 id="dash-issued-books">0</h2>
-                    </div>
-                    <div class="stat-card">
-                        <span class="stat-icon">👥</span>
-                        <p>Registered Members</p>
-                        <h2 id="dash-members">0</h2>
-                    </div>
-                    <div class="stat-card">
-                        <span class="stat-icon">⏰</span>
-                        <p>Overdue Books</p>
-                        <h2 id="dash-overdue">0</h2>
-                    </div>
-                    <div class="stat-card">
-                        <span class="stat-icon">💰</span>
-                        <p>Pending Fines</p>
-                        <h2 id="dash-fines">₹0</h2>
-                    </div>
-                </div>
+    <div class="stats-grid">
+        <div class="stat-card"><span class="stat-icon">📚</span><p>Total Copies</p><h2 id="dash-total-books">0</h2></div>
+        <div class="stat-card"><span class="stat-icon">📖</span><p>Available Copies</p><h2 id="dash-available">0</h2></div>
+        <div class="stat-card"><span class="stat-icon">📤</span><p>Books Issued</p><h2 id="dash-issued">0</h2></div>
+        <div class="stat-card"><span class="stat-icon">👥</span><p>Members</p><h2 id="dash-members">0</h2></div>
+        <div class="stat-card"><span class="stat-icon">⏰</span><p>Overdue Books</p><h2 id="dash-overdue">0</h2></div>
+        <div class="stat-card"><span class="stat-icon">💰</span><p>Pending Fines</p><h2 id="dash-fines">₹0</h2></div>
+    </div>
 
-                <div class="content-card">
-                    <h2>Quick Actions</h2>
-                    <div class="quick-actions">
-                        <button class="action-button" data-page="books">➕ Add New Book</button>
-                        <button class="action-button" data-page="members">👤 Register Member</button>
-                        <button class="action-button" data-page="issue">📤 Issue a Book</button>
-                        <button class="action-button" data-page="returns">📥 Return a Book</button>
-                    </div>
-                </div>
-
-                <div class="content-card">
-                    <h2>Recent Library Activities</h2>
-                    <div class="table-wrapper">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Member</th>
-                                    <th>Activity</th>
-                                    <th>Book</th>
-                                    <th>Status</th>
-                                </tr>
-                            </thead>
-                            <tbody id="recent-activities">
-                                <tr>
-                                    <td colspan="4">No activities recorded yet.</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </section>
-
-            <!-- BOOK MANAGEMENT -->
-            <section class="page-section" id="books">
-                <div class="section-heading">
-                    <h1>Book Management</h1>
-                    <p>Manage your library inventory and book copies.</p>
-                </div>
-
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <p>Total Book Titles</p>
-                        <h2 id="book-total-titles">0</h2>
-                    </div>
-                    <div class="stat-card">
-                        <p>Total Copies</p>
-                        <h2 id="book-total-copies">0</h2>
-                    </div>
-                    <div class="stat-card">
-                        <p>Available Copies</p>
-                        <h2 id="book-available-copies">0</h2>
-                    </div>
-                </div>
-
-                <div class="content-card">
-                    <h2>Add New Book</h2>
-                    <form id="book-form">
-                        <input type="hidden" id="book-edit-id">
-                        <div class="form-grid">
-                            <label>Book Title *
-                                <input id="book-title" required placeholder="Enter book title">
-                            </label>
-                            <label>Author *
-                                <input id="book-author" required placeholder="Enter author">
-                            </label>
-                            <label>ISBN *
-                                <input id="book-isbn" required placeholder="Enter ISBN">
-                            </label>
-                            <label>Category *
-                                <select id="book-category" required>
-                                    <option value="">Select category</option>
-                                    <option>Computer Science</option>
-                                    <option>Engineering</option>
-                                    <option>Mathematics</option>
-                                    <option>Science</option>
-                                    <option>Literature</option>
-                                    <option>Other</option>
-                                </select>
-                            </label>
-                            <label>Total Copies *
-                                <input id="book-copies" type="number" min="1" required placeholder="Enter quantity">
-                            </label>
-                        </div>
-                        <button class="primary-button" type="submit" id="book-submit">Add Book</button>
-                    </form>
-                </div>
-
-                <div class="content-card">
-                    <h2>All Books</h2>
-                    <input class="search-input" id="book-search" placeholder="Search by title, author or ISBN">
-                    <div class="table-wrapper">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Title</th>
-                                    <th>Author</th>
-                                    <th>ISBN</th>
-                                    <th>Category</th>
-                                    <th>Total</th>
-                                    <th>Available</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody id="books-table">
-                                <tr><td colspan="7">No books added yet.</td></tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </section>
-
-            <!-- OTHER MODULES -->
-            <section class="page-section" id="members">
-                <div class="section-heading">
-                    <h1>Members</h1>
-                    <p>Manage student and faculty library accounts.</p>
-                </div>
-                <div class="content-card module-placeholder">
-                    <span>👥</span>
-                    <h2>Member Management</h2>
-                    <p>Member registration and records will be added next.</p>
-                </div>
-            </section>
-
-            <section class="page-section" id="issue">
-                <div class="section-heading">
-                    <h1>Issue Books</h1>
-                    <p>Issue books to registered library members.</p>
-                </div>
-                <div class="content-card module-placeholder">
-                    <span>📤</span>
-                    <h2>Book Issue Management</h2>
-                    <p>Book issuing functionality will be added next.</p>
-                </div>
-            </section>
-
-            <section class="page-section" id="returns">
-                <div class="section-heading">
-                    <h1>Return Books</h1>
-                    <p>Process book returns and calculate overdue fines.</p>
-                </div>
-                <div class="content-card module-placeholder">
-                    <span>📥</span>
-                    <h2>Book Return Management</h2>
-                    <p>Book return functionality will be added next.</p>
-                </div>
-            </section>
-
-            <section class="page-section" id="reservations">
-                <div class="section-heading">
-                    <h1>Reservations</h1>
-                    <p>Manage book reservation requests.</p>
-                </div>
-                <div class="content-card module-placeholder">
-                    <span>📌</span>
-                    <h2>Reservation Management</h2>
-                    <p>Reservation functionality will be added next.</p>
-                </div>
-            </section>
-
-            <section class="page-section" id="fines">
-                <div class="section-heading">
-                    <h1>Fines</h1>
-                    <p>Track overdue charges and fine payments.</p>
-                </div>
-                <div class="content-card module-placeholder">
-                    <span>💰</span>
-                    <h2>Fine Management</h2>
-                    <p>Fine management functionality will be added next.</p>
-                </div>
-            </section>
-
-            <section class="page-section" id="reports">
-                <div class="section-heading">
-                    <h1>Reports</h1>
-                    <p>Review library usage and circulation reports.</p>
-                </div>
-                <div class="content-card module-placeholder">
-                    <span>📊</span>
-                    <h2>Library Reports</h2>
-                    <p>Reports and analytics will be added next.</p>
-                </div>
-            </section>
-
-            <section class="page-section" id="settings">
-                <div class="section-heading">
-                    <h1>Settings</h1>
-                    <p>Configure library rules and preferences.</p>
-                </div>
-                <div class="content-card module-placeholder">
-                    <span>⚙️</span>
-                    <h2>Library Settings</h2>
-                    <p>Library configuration will be added next.</p>
-                </div>
-            </section>
-
+    <div class="content-card">
+        <h2>Quick Actions</h2>
+        <div class="quick-actions">
+            <button class="action-button" data-page="books">➕ Add New Book</button>
+            <button class="action-button" data-page="members">👤 Register Member</button>
+            <button class="action-button" data-page="issue">📤 Issue a Book</button>
+            <button class="action-button" data-page="returns">📥 Return a Book</button>
         </div>
+    </div>
 
-        <footer class="app-footer">
-            College Library Management System © 2026
-        </footer>
+    <div class="content-card">
+        <h2>Recent Library Activities</h2>
+        <div class="table-wrapper">
+            <table>
+                <thead><tr><th>Date</th><th>Member</th><th>Activity</th><th>Book</th></tr></thead>
+                <tbody id="activity-table"></tbody>
+            </table>
+        </div>
+    </div>
+</section>
 
-    </main>
+<!-- BOOK MANAGEMENT -->
+<section class="page-section" id="books">
+    <div class="section-heading">
+        <h1>Book Management</h1>
+        <p>Manage your library inventory and book copies.</p>
+    </div>
+
+    <div class="stats-grid">
+        <div class="stat-card"><p>Total Titles</p><h2 id="book-titles">0</h2></div>
+        <div class="stat-card"><p>Total Copies</p><h2 id="book-copies-total">0</h2></div>
+        <div class="stat-card"><p>Available Copies</p><h2 id="book-copies-available">0</h2></div>
+    </div>
+
+    <div class="content-card">
+        <h2 id="book-form-heading">Add New Book</h2>
+        <form id="book-form">
+            <input type="hidden" id="book-id">
+            <div class="form-grid">
+                <label>Book Title *
+                    <input id="book-title" required placeholder="Enter book title">
+                </label>
+                <label>Author *
+                    <input id="book-author" required placeholder="Enter author">
+                </label>
+                <label>ISBN *
+                    <input id="book-isbn" required placeholder="Enter ISBN">
+                </label>
+                <label>Category *
+                    <select id="book-category" required>
+                        <option value="">Select category</option>
+                        <option>Computer Science</option>
+                        <option>Engineering</option>
+                        <option>Mathematics</option>
+                        <option>Science</option>
+                        <option>Literature</option>
+                        <option>Management</option>
+                        <option>Other</option>
+                    </select>
+                </label>
+                <label>Total Copies *
+                    <input id="book-quantity" type="number" min="1" step="1" required>
+                </label>
+            </div>
+            <button class="primary-button" type="submit" id="book-save">Add Book</button>
+            <button class="secondary-button" type="button" id="book-cancel" hidden>Cancel</button>
+        </form>
+    </div>
+
+    <div class="content-card">
+        <h2>All Books</h2>
+        <input class="search-input" id="book-search" placeholder="Search title, author or ISBN">
+        <div class="table-wrapper">
+            <table>
+                <thead><tr><th>Title</th><th>Author</th><th>ISBN</th><th>Category</th><th>Total</th><th>Available</th><th>Actions</th></tr></thead>
+                <tbody id="books-table"></tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<!-- MEMBERS -->
+<section class="page-section" id="members">
+    <div class="section-heading">
+        <h1>Member Management</h1>
+        <p>Register and manage students and faculty.</p>
+    </div>
+
+    <div class="content-card">
+        <h2 id="member-form-heading">Register New Member</h2>
+        <form id="member-form">
+            <input type="hidden" id="member-id">
+            <div class="form-grid">
+                <label>Full Name *
+                    <input id="member-name" required placeholder="Member name">
+                </label>
+                <label>College ID *
+                    <input id="member-college-id" required placeholder="College ID">
+                </label>
+                <label>Email *
+                    <input id="member-email" type="email" required placeholder="Email address">
+                </label>
+                <label>Phone *
+                    <input id="member-phone" type="tel" required placeholder="Phone number">
+                </label>
+                <label>Member Type *
+                    <select id="member-type" required>
+                        <option value="">Select type</option>
+                        <option>Student</option>
+                        <option>Faculty</option>
+                    </select>
+                </label>
+                <label>Department
+                    <input id="member-department" placeholder="Department">
+                </label>
+            </div>
+            <button class="primary-button" type="submit" id="member-save">Register Member</button>
+            <button class="secondary-button" type="button" id="member-cancel" hidden>Cancel</button>
+        </form>
+    </div>
+
+    <div class="content-card">
+        <h2>Registered Members</h2>
+        <input class="search-input" id="member-search" placeholder="Search by name, ID or email">
+        <div class="table-wrapper">
+            <table>
+                <thead><tr><th>Name</th><th>College ID</th><th>Email</th><th>Phone</th><th>Type</th><th>Department</th><th>Actions</th></tr></thead>
+                <tbody id="members-table"></tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<!-- ISSUE BOOKS -->
+<section class="page-section" id="issue">
+    <div class="section-heading">
+        <h1>Issue Books</h1>
+        <p>Issue available books to registered members.</p>
+    </div>
+
+    <div class="content-card">
+        <h2>New Book Issue</h2>
+        <form id="issue-form">
+            <div class="form-grid">
+                <label>Member *
+                    <select id="issue-member" required><option value="">Select member</option></select>
+                </label>
+                <label>Book *
+                    <select id="issue-book" required><option value="">Select book</option></select>
+                </label>
+                <label>Issue Date *
+                    <input id="issue-date" type="date" required>
+                </label>
+                <label>Due Date *
+                    <input id="issue-due" type="date" required>
+                </label>
+            </div>
+            <button class="primary-button" type="submit">Issue Book</button>
+        </form>
+    </div>
+
+    <div class="content-card">
+        <h2>Currently Issued Books</h2>
+        <input class="search-input" id="issue-search" placeholder="Search issue records">
+        <div class="table-wrapper">
+            <table>
+                <thead><tr><th>Member</th><th>Book</th><th>Issue Date</th><th>Due Date</th><th>Status</th></tr></thead>
+                <tbody id="issued-table"></tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<!-- RETURNS -->
+<section class="page-section" id="returns">
+    <div class="section-heading">
+        <h1>Return Books</h1>
+        <p>Process returns and calculate overdue fines.</p>
+    </div>
+    <div class="content-card">
+        <h2>Issued Books</h2>
+        <div class="table-wrapper">
+            <table>
+                <thead><tr><th>Member</th><th>Book</th><th>Due Date</th><th>Return Status</th><th>Action</th></tr></thead>
+                <tbody id="returns-table"></tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<!-- RESERVATIONS -->
+<section class="page-section" id="reservations">
+    <div class="section-heading">
+        <h1>Reservations</h1>
+        <p>Manage requests for books that members want to reserve.</p>
+    </div>
+    <div class="content-card">
+        <h2>New Reservation</h2>
+        <form id="reservation-form">
+            <div class="form-grid">
+                <label>Member *
+                    <select id="reservation-member" required><option value="">Select member</option></select>
+                </label>
+                <label>Book *
+                    <select id="reservation-book" required><option value="">Select book</option></select>
+                </label>
+            </div>
+            <button class="primary-button" type="submit">Create Reservation</button>
+        </form>
+    </div>
+    <div class="content-card">
+        <h2>Reservation Records</h2>
+        <div class="table-wrapper">
+            <table>
+                <thead><tr><th>Member</th><th>Book</th><th>Date</th><th>Status</th><th>Action</th></tr></thead>
+                <tbody id="reservations-table"></tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<!-- FINES -->
+<section class="page-section" id="fines">
+    <div class="section-heading">
+        <h1>Fine Management</h1>
+        <p>Review overdue charges and payment status.</p>
+    </div>
+    <div class="stats-grid">
+        <div class="stat-card"><p>Total Pending Fines</p><h2 id="fine-pending">₹0</h2></div>
+        <div class="stat-card"><p>Total Collected</p><h2 id="fine-collected">₹0</h2></div>
+    </div>
+    <div class="content-card">
+        <h2>Fine Records</h2>
+        <div class="table-wrapper">
+            <table>
+                <thead><tr><th>Member</th><th>Book</th><th>Overdue Days</th><th>Fine</th><th>Status</th><th>Action</th></tr></thead>
+                <tbody id="fines-table"></tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<!-- REPORTS -->
+<section class="page-section" id="reports">
+    <div class="section-heading">
+        <h1>Library Reports</h1>
+        <p>View library inventory and circulation information.</p>
+    </div>
+    <div class="stats-grid">
+        <div class="stat-card"><p>Book Titles</p><h2 id="report-titles">0</h2></div>
+        <div class="stat-card"><p>Book Copies</p><h2 id="report-copies">0</h2></div>
+        <div class="stat-card"><p>Members</p><h2 id="report-members">0</h2></div>
+        <div class="stat-card"><p>Active Issues</p><h2 id="report-issues">0</h2></div>
+        <div class="stat-card"><p>Reservations</p><h2 id="report-reservations">0</h2></div>
+    </div>
+    <div class="content-card">
+        <h2>Report Actions</h2>
+        <button class="primary-button" id="print-report" type="button">Print Report</button>
+        <button class="secondary-button" id="export-report" type="button">Export Books CSV</button>
+    </div>
+</section>
+
+<!-- SETTINGS -->
+<section class="page-section" id="settings">
+    <div class="section-heading">
+        <h1>Library Settings</h1>
+        <p>Configure library rules and preferences.</p>
+    </div>
+    <div class="content-card">
+        <h2>Library Configuration</h2>
+        <form id="settings-form">
+            <div class="form-grid">
+                <label>Library Name
+                    <input id="setting-name" required>
+                </label>
+                <label>Library Opening Time
+                    <input id="setting-open" type="time" required>
+                </label>
+                <label>Library Closing Time
+                    <input id="setting-close" type="time" required>
+                </label>
+                <label>Maximum Books per Member
+                    <input id="setting-limit" type="number" min="1" required>
+                </label>
+                <label>Issue Period (Days)
+                    <input id="setting-period" type="number" min="1" required>
+                </label>
+                <label>Fine per Overdue Day (₹)
+                    <input id="setting-fine" type="number" min="0" required>
+                </label>
+            </div>
+            <button class="primary-button" type="submit">Save Settings</button>
+        </form>
+    </div>
+</section>
+
+</div>
+
+<footer class="app-footer">
+    College Library Management System © 2026
+</footer>
+
+</main>
 </div>
 
 </body>
