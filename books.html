@@ -1,0 +1,513 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Inventory | College Library</title>
+    <script src="js/app.js" defer></script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f3f5f9;
+            color: #243047;
+        }
+
+        header {
+            background: #173b70;
+            color: white;
+            padding: 22px;
+        }
+
+        header h1 {
+            margin: 0 0 8px;
+        }
+
+        header a {
+            color: white;
+            text-decoration: none;
+        }
+
+        main {
+            max-width: 1150px;
+            margin: 25px auto;
+            padding: 15px;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 22px;
+        }
+
+        .stat, .panel {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px #0000000c;
+        }
+
+        .stat h2 {
+            margin: 8px 0 0;
+            color: #173b70;
+        }
+
+        .panel {
+            margin-bottom: 22px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 6px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #cbd3df;
+            border-radius: 6px;
+            font-size: 15px;
+        }
+
+        button {
+            border: none;
+            border-radius: 6px;
+            padding: 11px 17px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .primary {
+            background: #174ea6;
+            color: white;
+            margin-top: 16px;
+        }
+
+        .secondary {
+            background: #e7ebf2;
+            color: #243047;
+            margin-top: 16px;
+        }
+
+        .edit {
+            background: #e5efff;
+            color: #174ea6;
+            margin: 3px;
+        }
+
+        .delete {
+            background: #ffe8e8;
+            color: #c62828;
+            margin: 3px;
+        }
+
+        .search {
+            margin: 10px 0 18px;
+        }
+
+        .table-wrap {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 700px;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 13px;
+            border-bottom: 1px solid #e4e8ef;
+        }
+
+        th {
+            background: #edf2f9;
+        }
+
+        .message {
+            margin-top: 12px;
+            font-weight: bold;
+        }
+
+        @media(max-width: 650px) {
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            header h1 {
+                font-size: 23px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>College Library Management</h1>
+    <p>Book Inventory Management</p>
+    <a href="index.html">← Back to Dashboard</a>
+</header>
+
+<main>
+
+    <h2>Book Inventory</h2>
+    <p>Manage books, categories and available copies.</p>
+
+    <section class="stats">
+        <div class="stat">
+            <p>Total Book Titles</p>
+            <h2 id="totalTitles">0</h2>
+        </div>
+
+        <div class="stat">
+            <p>Total Copies</p>
+            <h2 id="totalCopies">0</h2>
+        </div>
+
+        <div class="stat">
+            <p>Available Copies</p>
+            <h2 id="availableCopies">0</h2>
+        </div>
+    </section>
+
+    <section class="panel">
+        <h2 id="formTitle">Add New Book</h2>
+
+        <form id="bookForm">
+
+            <div class="form-grid">
+
+                <div>
+                    <label for="bookTitle">Book Title *</label>
+                    <input id="bookTitle" required
+                           placeholder="Enter book title">
+                </div>
+
+                <div>
+                    <label for="author">Author *</label>
+                    <input id="author" required
+                           placeholder="Enter author name">
+                </div>
+
+                <div>
+                    <label for="isbn">ISBN *</label>
+                    <input id="isbn" required
+                           placeholder="Enter ISBN">
+                </div>
+
+                <div>
+                    <label for="category">Category *</label>
+                    <select id="category" required>
+                        <option value="">Select category</option>
+                        <option>Computer Science</option>
+                        <option>Engineering</option>
+                        <option>Mathematics</option>
+                        <option>Science</option>
+                        <option>Literature</option>
+                        <option>Management</option>
+                        <option>Reference</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="copies">Total Copies *</label>
+                    <input id="copies" type="number"
+                           min="1" step="1" required
+                           placeholder="Enter quantity">
+                </div>
+
+            </div>
+
+            <button class="primary" type="submit"
+                    id="submitButton">Add Book</button>
+
+            <button class="secondary" type="button"
+                    id="cancelButton" hidden>
+                Cancel Edit
+            </button>
+
+            <p id="message" class="message"></p>
+
+        </form>
+    </section>
+
+    <section class="panel">
+        <h2>All Books</h2>
+
+        <input class="search" id="searchInput"
+               placeholder="Search by title, author or ISBN...">
+
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>ISBN</th>
+                        <th>Category</th>
+                        <th>Total</th>
+                        <th>Available</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody id="bookTable">
+                </tbody>
+            </table>
+        </div>
+
+        <p id="emptyMessage">No books added yet.</p>
+    </section>
+
+</main>
+
+<script>
+    const form = document.getElementById("bookForm");
+    const table = document.getElementById("bookTable");
+    const searchInput = document.getElementById("searchInput");
+    const message = document.getElementById("message");
+
+    const titleInput = document.getElementById("bookTitle");
+    const authorInput = document.getElementById("author");
+    const isbnInput = document.getElementById("isbn");
+    const categoryInput = document.getElementById("category");
+    const copiesInput = document.getElementById("copies");
+
+    let editingID = null;
+
+    function getBooks() {
+        return LibraryDB.getBooks();
+    }
+
+    function renderBooks() {
+        const books = getBooks();
+        const query = searchInput.value.toLowerCase().trim();
+
+        const filtered = books.filter(book =>
+            book.title.toLowerCase().includes(query) ||
+            book.author.toLowerCase().includes(query) ||
+            book.isbn.toLowerCase().includes(query)
+        );
+
+        document.getElementById("totalTitles").textContent =
+            books.length;
+
+        document.getElementById("totalCopies").textContent =
+            books.reduce((sum, book) => sum + book.totalCopies, 0);
+
+        document.getElementById("availableCopies").textContent =
+            books.reduce((sum, book) => sum + book.availableCopies, 0);
+
+        table.innerHTML = "";
+
+        document.getElementById("emptyMessage").hidden =
+            filtered.length !== 0;
+
+        filtered.forEach(book => {
+            const row = document.createElement("tr");
+
+            const values = [
+                book.title,
+                book.author,
+                book.isbn,
+                book.category,
+                book.totalCopies,
+                book.availableCopies
+            ];
+
+            values.forEach(value => {
+                const cell = document.createElement("td");
+                cell.textContent = value;
+                row.appendChild(cell);
+            });
+
+            const actions = document.createElement("td");
+
+            const editButton = document.createElement("button");
+            editButton.textContent = "Edit";
+            editButton.className = "edit";
+            editButton.addEventListener("click", () =>
+                editBook(book.id)
+            );
+
+            const deleteButton = document.createElement("button");
+            deleteButton.textContent = "Delete";
+            deleteButton.className = "delete";
+            deleteButton.addEventListener("click", () =>
+                deleteBook(book.id)
+            );
+
+            actions.append(editButton, deleteButton);
+            row.appendChild(actions);
+            table.appendChild(row);
+        });
+    }
+
+    form.addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        const title = titleInput.value.trim();
+        const author = authorInput.value.trim();
+        const isbn = isbnInput.value.trim();
+        const category = categoryInput.value;
+        const copies = Number(copiesInput.value);
+
+        if (!title || !author || !isbn || !category ||
+            !Number.isSafeInteger(copies) || copies < 1) {
+            message.textContent = "Please enter valid book details.";
+            return;
+        }
+
+        const books = getBooks();
+
+        const duplicate = books.some(book =>
+            book.isbn.toLowerCase() === isbn.toLowerCase() &&
+            book.id !== editingID
+        );
+
+        if (duplicate) {
+            message.textContent = "This ISBN already exists.";
+            return;
+        }
+
+        if (editingID) {
+            const index = books.findIndex(book =>
+                book.id === editingID
+            );
+
+            if (index === -1) return;
+
+            const oldBook = books[index];
+            const issued = oldBook.totalCopies -
+                           oldBook.availableCopies;
+
+            if (copies < issued) {
+                message.textContent =
+                    "Total copies cannot be less than issued copies.";
+                return;
+            }
+
+            books[index] = {
+                ...oldBook,
+                title,
+                author,
+                isbn,
+                category,
+                totalCopies: copies,
+                availableCopies: copies - issued
+            };
+
+            message.textContent = "Book updated successfully!";
+        } else {
+            books.push({
+                id: LibraryDB.generateID("BOOK"),
+                title,
+                author,
+                isbn,
+                category,
+                totalCopies: copies,
+                availableCopies: copies
+            });
+
+            message.textContent = "Book added successfully!";
+        }
+
+        LibraryDB.saveBooks(books);
+        form.reset();
+        editingID = null;
+        resetForm();
+        renderBooks();
+    });
+
+    function editBook(id) {
+        const book = getBooks().find(item => item.id === id);
+        if (!book) return;
+
+        editingID = id;
+
+        titleInput.value = book.title;
+        authorInput.value = book.author;
+        isbnInput.value = book.isbn;
+        categoryInput.value = book.category;
+        copiesInput.value = book.totalCopies;
+
+        document.getElementById("formTitle").textContent =
+            "Edit Book Details";
+
+        document.getElementById("submitButton").textContent =
+            "Update Book";
+
+        document.getElementById("cancelButton").hidden = false;
+
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function deleteBook(id) {
+        const books = getBooks();
+        const book = books.find(item => item.id === id);
+
+        if (!book) return;
+
+        if (book.availableCopies < book.totalCopies) {
+            alert("Cannot delete: Some copies are currently issued.");
+            return;
+        }
+
+        if (!confirm("Are you sure you want to delete this book?")) {
+            return;
+        }
+
+        LibraryDB.saveBooks(
+            books.filter(item => item.id !== id)
+        );
+
+        message.textContent = "Book deleted successfully!";
+        renderBooks();
+    }
+
+    function resetForm() {
+        document.getElementById("formTitle").textContent =
+            "Add New Book";
+
+        document.getElementById("submitButton").textContent =
+            "Add Book";
+
+        document.getElementById("cancelButton").hidden = true;
+    }
+
+    document.getElementById("cancelButton")
+        .addEventListener("click", () => {
+            form.reset();
+            editingID = null;
+            resetForm();
+            message.textContent = "";
+        });
+
+    searchInput.addEventListener("input", renderBooks);
+
+    renderBooks();
+</script>
+
+</body>
+</html>
