@@ -1,34 +1,27 @@
 
-/* =========================================
-   COLLEGE LIBRARY MANAGEMENT SYSTEM
-   Main Application Stylesheet
-========================================= */
-
 :root {
     --primary: #2457a6;
-    --primary-dark: #183c70;
-    --primary-light: #eaf1ff;
+    --dark: #172d4d;
     --background: #f4f6fb;
     --surface: #ffffff;
     --text: #253247;
     --muted: #7c8798;
-    --border: #e6eaf0;
+    --border: #e5e9f0;
     --success: #15966b;
     --danger: #dc5050;
-    --shadow: 0 4px 18px rgba(30, 50, 80, 0.06);
+    --shadow: 0 4px 18px rgba(30,50,80,.06);
 }
 
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
 body {
     font-family: Arial, Helvetica, sans-serif;
     background: var(--background);
     color: var(--text);
-    font-size: 15px;
     line-height: 1.6;
 }
 
@@ -40,22 +33,19 @@ button {
     cursor: pointer;
 }
 
-/* MAIN APPLICATION */
+/* APPLICATION LAYOUT */
 
 .app-layout {
     display: flex;
     min-height: 100vh;
 }
 
-/* SIDEBAR */
-
 .sidebar {
     width: 255px;
     min-width: 255px;
-    background: #172d4d;
+    background: var(--dark);
     color: white;
-    min-height: 100vh;
-    padding: 25px 16px;
+    padding: 24px 16px;
     display: flex;
     flex-direction: column;
 }
@@ -72,8 +62,8 @@ button {
 }
 
 .brand h2 {
-    font-size: 21px;
     color: white;
+    font-size: 21px;
 }
 
 .brand small {
@@ -85,7 +75,7 @@ button {
     color: #91a5c1;
     font-size: 11px;
     font-weight: bold;
-    letter-spacing: 1.2px;
+    letter-spacing: 1px;
     padding: 18px 12px 10px;
 }
 
@@ -96,21 +86,14 @@ button {
 }
 
 .nav-link {
-    border: none;
+    border: 0;
     background: transparent;
     color: #d1dced;
-    padding: 12px 14px;
+    padding: 12px 13px;
     border-radius: 9px;
     text-align: left;
-    display: flex;
-    align-items: center;
-    gap: 12px;
     font-size: 14px;
-    transition: 0.2s;
-}
-
-.nav-link span {
-    font-size: 18px;
+    transition: .2s;
 }
 
 .nav-link:hover,
@@ -132,9 +115,9 @@ button {
 .profile-circle {
     width: 38px;
     height: 38px;
-    background: #dce9ff;
-    color: var(--primary-dark);
     border-radius: 50%;
+    background: #dce9ff;
+    color: var(--primary);
     display: grid;
     place-items: center;
     font-weight: bold;
@@ -164,7 +147,7 @@ button {
 }
 
 .topbar {
-    background: var(--surface);
+    background: white;
     padding: 17px 30px;
     min-height: 82px;
     border-bottom: 1px solid var(--border);
@@ -175,7 +158,6 @@ button {
 
 .topbar h2 {
     font-size: 21px;
-    font-weight: 700;
 }
 
 .topbar p {
@@ -186,7 +168,7 @@ button {
 .topbar-profile {
     display: flex;
     align-items: center;
-    gap: 18px;
+    gap: 16px;
     font-size: 21px;
 }
 
@@ -195,17 +177,18 @@ button {
     flex: 1;
 }
 
-/* PAGE SWITCHING */
+/* PAGE VISIBILITY */
 
 .page-section {
-    display: none;
+    display: none !important;
 }
 
 .page-section.active {
-    display: block;
+    display: block !important;
 }
 
-.welcome-section {
+.welcome-section,
+.section-heading {
     margin-bottom: 25px;
 }
 
@@ -220,21 +203,17 @@ button {
     color: var(--muted);
 }
 
-.section-heading {
-    margin-bottom: 25px;
-}
-
 /* STATISTICS */
 
 .stats-grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0,1fr));
     gap: 18px;
     margin-bottom: 25px;
 }
 
 .stat-card {
-    background: var(--surface);
+    background: white;
     border: 1px solid var(--border);
     border-radius: 13px;
     padding: 22px;
@@ -243,8 +222,8 @@ button {
 }
 
 .stat-icon {
-    font-size: 27px;
     display: block;
+    font-size: 27px;
     margin-bottom: 12px;
 }
 
@@ -257,12 +236,13 @@ button {
     color: var(--primary);
     font-size: 28px;
     margin-top: 5px;
+    overflow-wrap: anywhere;
 }
 
 /* CONTENT CARDS */
 
 .content-card {
-    background: var(--surface);
+    background: white;
     border: 1px solid var(--border);
     border-radius: 13px;
     padding: 25px;
@@ -275,40 +255,22 @@ button {
     margin-bottom: 20px;
 }
 
-.module-placeholder {
-    text-align: center;
-    padding: 55px 20px;
-}
-
-.module-placeholder span {
-    font-size: 48px;
-}
-
-.module-placeholder h2 {
-    margin: 12px 0 5px;
-}
-
-.module-placeholder p {
-    color: var(--muted);
-}
-
-/* QUICK ACTIONS */
+/* ACTION BUTTONS */
 
 .quick-actions {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(2,minmax(0,1fr));
     gap: 12px;
 }
 
 .action-button {
     border: none;
-    background: var(--primary-light);
-    color: var(--primary-dark);
+    background: #eaf1ff;
+    color: var(--primary);
     border-radius: 9px;
     padding: 15px;
     text-align: left;
     font-weight: 600;
-    transition: 0.2s;
 }
 
 .action-button:hover {
@@ -319,7 +281,7 @@ button {
 
 .form-grid {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(2,minmax(0,1fr));
     gap: 18px;
     margin-bottom: 20px;
 }
@@ -342,26 +304,37 @@ button {
     background: white;
     outline: none;
     color: var(--text);
+    min-width: 0;
 }
 
 .form-grid input:focus,
 .form-grid select:focus,
 .search-input:focus {
     border-color: var(--primary);
-    box-shadow: 0 0 0 3px rgba(36, 87, 166, 0.1);
+    box-shadow: 0 0 0 3px rgba(36,87,166,.1);
+}
+
+.primary-button,
+.secondary-button {
+    border: none;
+    border-radius: 8px;
+    padding: 12px 20px;
+    font-weight: 600;
+    margin: 3px 5px 3px 0;
 }
 
 .primary-button {
     background: var(--primary);
     color: white;
-    border: none;
-    padding: 12px 22px;
-    border-radius: 8px;
-    font-weight: 600;
 }
 
 .primary-button:hover {
-    background: var(--primary-dark);
+    background: #183c70;
+}
+
+.secondary-button {
+    background: #e9edf4;
+    color: var(--text);
 }
 
 .search-input {
@@ -373,6 +346,7 @@ button {
 .table-wrapper {
     width: 100%;
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 table {
@@ -395,13 +369,14 @@ td {
     padding: 14px;
     border-bottom: 1px solid var(--border);
     font-size: 13px;
+    vertical-align: middle;
 }
 
 tbody tr:hover {
     background: #f8faff;
 }
 
-/* STATUS AND ACTION BUTTONS */
+/* STATUS */
 
 .status {
     display: inline-block;
@@ -409,27 +384,33 @@ tbody tr:hover {
     border-radius: 20px;
     font-size: 11px;
     font-weight: bold;
+    white-space: nowrap;
 }
 
-.status.available {
+.status.available,
+.status.paid {
     color: var(--success);
     background: #e5f7ef;
 }
 
-.status.issued {
+.status.issued,
+.status.pending {
     color: var(--primary);
     background: #e8efff;
 }
 
-.status.overdue {
+.status.overdue,
+.status.cancelled {
     color: var(--danger);
     background: #ffeded;
 }
 
+/* TABLE ACTIONS */
+
 .table-action {
     border: none;
     border-radius: 5px;
-    padding: 6px 9px;
+    padding: 7px 10px;
     margin: 2px;
     font-size: 12px;
 }
@@ -444,7 +425,10 @@ tbody tr:hover {
     color: var(--danger);
 }
 
-/* FOOTER */
+.return-button {
+    background: #e5f7ef;
+    color: var(--success);
+}
 
 .app-footer {
     padding: 18px 25px;
@@ -457,7 +441,7 @@ tbody tr:hover {
 
 /* TABLET */
 
-@media (max-width: 1000px) {
+@media(max-width:1000px) {
     .sidebar {
         width: 220px;
         min-width: 220px;
@@ -468,13 +452,13 @@ tbody tr:hover {
     }
 
     .stats-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns: repeat(2,minmax(0,1fr));
     }
 }
 
 /* MOBILE */
 
-@media (max-width: 700px) {
+@media(max-width:700px) {
     .app-layout {
         display: block;
     }
@@ -498,10 +482,6 @@ tbody tr:hover {
         font-size: 18px;
     }
 
-    .brand small {
-        font-size: 10px;
-    }
-
     .sidebar-label {
         display: none;
     }
@@ -510,19 +490,15 @@ tbody tr:hover {
         flex-direction: row;
         overflow-x: auto;
         gap: 7px;
-        padding: 5px 0;
+        padding: 8px 0;
         scrollbar-width: thin;
     }
 
     .nav-link {
         flex: 0 0 auto;
         white-space: nowrap;
-        padding: 10px 12px;
+        padding: 11px 13px;
         font-size: 12px;
-    }
-
-    .nav-link span {
-        font-size: 15px;
     }
 
     .sidebar-footer {
@@ -548,7 +524,7 @@ tbody tr:hover {
     }
 
     .stats-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns: repeat(2,minmax(0,1fr));
         gap: 11px;
     }
 
@@ -577,13 +553,9 @@ tbody tr:hover {
         font-size: 17px;
     }
 
-    .quick-actions {
-        grid-template-columns: 1fr;
-    }
-
+    .quick-actions,
     .form-grid {
         grid-template-columns: 1fr;
-        gap: 14px;
     }
 
     .app-footer {
@@ -591,72 +563,38 @@ tbody tr:hover {
     }
 }
 
-/* SMALL MOBILE */
-
-@media (max-width: 360px) {
+@media(max-width:360px) {
     .stats-grid {
         grid-template-columns: 1fr;
     }
+}
 
-    .topbar-profile {
-        gap: 9px;
+/* PRINT REPORTS */
+
+@media print {
+    .sidebar,
+    .topbar,
+    .app-footer,
+    button,
+    .search-input {
+        display: none !important;
+    }
+
+    .main-content {
+        width: 100%;
+    }
+
+    .page-section {
+        display: none !important;
+    }
+
+    #reports {
+        display: block !important;
+    }
+
+    .content-card,
+    .stat-card {
+        box-shadow: none;
+        border: 1px solid #ccc;
     }
 }
-
-/* APPLICATION PAGE VISIBILITY FIX */
-
-.page-section {
-    display: none !important;
-}
-
-.page-section.active {
-    display: block !important;
-}
-
-/* Navigation button appearance */
-.nav-link {
-    border: none !important;
-    background: transparent !important;
-    color: #d1dced !important;
-    text-align: left;
-    border-radius: 9px;
-}
-
-.nav-link.active {
-    background: #2c4c78 !important;
-    color: white !important;
-}
-
-.nav-link:hover {
-    background: #2c4c78 !important;
-    color: white !important;
-}
-
-/* Form layout */
-.form-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 18px;
-}
-
-.form-grid label {
-    display: flex;
-    flex-direction: column;
-    gap: 7px;
-}
-
-.form-grid input,
-.form-grid select {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #d8dee8;
-    border-radius: 8px;
-    background: white;
-}
-
-@media (max-width: 700px) {
-    .form-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
