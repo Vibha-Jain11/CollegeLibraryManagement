@@ -1,0 +1,195 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Library Management System</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="app-container">
+
+    <aside class="sidebar">
+        <div class="brand">
+            <h2>📚 College Library</h2>
+            <p>Management System</p>
+        </div>
+
+        <nav>
+            <a href="index.html" class="active">🏠 Dashboard</a>
+            <a href="books.html">📖 Book Management</a>
+            <a href="members.html">👥 Members</a>
+            <a href="issue-books.html">📤 Issue Books</a>
+            <a href="return-books.html">📥 Return Books</a>
+            <a href="reservations.html">📌 Reservations</a>
+            <a href="fines.html">💰 Fines</a>
+            <a href="reports.html">📊 Reports</a>
+            <a href="settings.html">⚙️ Settings</a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <p>College Library Portal</p>
+            <small>Version 1.0</small>
+        </div>
+    </aside>
+
+    <main class="main-content">
+
+        <header class="topbar">
+            <div>
+                <h1>Library Dashboard</h1>
+                <p>Welcome to the College Library Management System</p>
+            </div>
+            <div class="admin-info">
+                <span>👤</span>
+                <div>
+                    <strong>Administrator</strong>
+                    <small>Library Admin</small>
+                </div>
+            </div>
+        </header>
+
+        <section class="dashboard-content">
+
+            <div class="welcome-banner">
+                <h2>Welcome, Library Administrator!</h2>
+                <p>Manage books, members, circulation and library activities from one place.</p>
+            </div>
+
+            <h2 class="section-title">Library Overview</h2>
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+                    <span>📚</span>
+                    <h3>Total Books</h3>
+                    <p id="totalBooks">1200</p>
+                </div>
+
+                <div class="stat-card">
+                    <span>📖</span>
+                    <h3>Available Books</h3>
+                    <p id="availableBooks">850</p>
+                </div>
+
+                <div class="stat-card">
+                    <span>📤</span>
+                    <h3>Books Issued</h3>
+                    <p id="issuedBooks">350</p>
+                </div>
+
+                <div class="stat-card">
+                    <span>👥</span>
+                    <h3>Registered Members</h3>
+                    <p id="totalMembers">480</p>
+                </div>
+
+                <div class="stat-card">
+                    <span>⏰</span>
+                    <h3>Overdue Books</h3>
+                    <p id="overdueBooks">25</p>
+                </div>
+
+                <div class="stat-card">
+                    <span>💰</span>
+                    <h3>Pending Fines</h3>
+                    <p id="pendingFines">₹2,500</p>
+                </div>
+
+            </div>
+
+            <div class="dashboard-grid">
+
+                <section class="panel">
+                    <h2>Quick Actions</h2>
+
+                    <div class="quick-actions">
+                        <a href="books.html">➕ Add New Book</a>
+                        <a href="members.html">👤 Register Member</a>
+                        <a href="issue-books.html">📤 Issue a Book</a>
+                        <a href="return-books.html">📥 Return a Book</a>
+                    </div>
+                </section>
+
+                <section class="panel">
+                    <h2>Library Information</h2>
+
+                    <div class="info-item">
+                        <span>Library Timing</span>
+                        <strong>9 AM – 5 PM</strong>
+                    </div>
+
+                    <div class="info-item">
+                        <span>Maximum Books per Member</span>
+                        <strong>5</strong>
+                    </div>
+
+                    <div class="info-item">
+                        <span>Standard Issue Period</span>
+                        <strong>14 Days</strong>
+                    </div>
+
+                    <div class="info-item">
+                        <span>Fine per Overdue Day</span>
+                        <strong>₹5</strong>
+                    </div>
+                </section>
+
+            </div>
+
+            <section class="panel activity-panel">
+                <h2>Recent Library Activities</h2>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Member</th>
+                                <th>Activity</th>
+                                <th>Book</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td>Rahul Sharma</td>
+                                <td>Book Issued</td>
+                                <td>Data Structures</td>
+                                <td>Issued</td>
+                            </tr>
+
+                            <tr>
+                                <td>Priya Singh</td>
+                                <td>Book Returned</td>
+                                <td>Operating Systems</td>
+                                <td>Completed</td>
+                            </tr>
+
+                            <tr>
+                                <td>Aman Verma</td>
+                                <td>Book Issued</td>
+                                <td>Java Programming</td>
+                                <td>Issued</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+        </section>
+
+        <footer>
+            <p>College Library Management System © 2026</p>
+        </footer>
+
+    </main>
+
+</div>
+
+<script src="js/app.js"></script>
+
+</body>
+</html>
