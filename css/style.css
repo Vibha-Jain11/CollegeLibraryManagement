@@ -602,3 +602,61 @@ tbody tr:hover {
         gap: 9px;
     }
 }
+
+/* APPLICATION PAGE VISIBILITY FIX */
+
+.page-section {
+    display: none !important;
+}
+
+.page-section.active {
+    display: block !important;
+}
+
+/* Navigation button appearance */
+.nav-link {
+    border: none !important;
+    background: transparent !important;
+    color: #d1dced !important;
+    text-align: left;
+    border-radius: 9px;
+}
+
+.nav-link.active {
+    background: #2c4c78 !important;
+    color: white !important;
+}
+
+.nav-link:hover {
+    background: #2c4c78 !important;
+    color: white !important;
+}
+
+/* Form layout */
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.form-grid label {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.form-grid input,
+.form-grid select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #d8dee8;
+    border-radius: 8px;
+    background: white;
+}
+
+@media (max-width: 700px) {
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
